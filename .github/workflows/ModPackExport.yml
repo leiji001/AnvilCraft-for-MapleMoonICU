@@ -24,20 +24,19 @@ jobs:
     - name: Add Go bin to PATH
       run: echo "${HOME}/go/bin" >> $GITHUB_PATH
 
-    - name: Export to Modrinth format (.mrpack)
-      run: packwiz modrinth export --output MMICU-AnvilCraft-Modrinth.mrpack
-
-    - name: Export to CurseForge format (.zip)
-      run: packwiz curseforge export --output MMICU-AnvilCraft-CurseForge.zip
-
-    - name: Get release notes from CHANGELOG.md
-      id: changelog
+    - name: Export  Modrinth 
       run: |
-        TAG_NAME="${GITHUB_REF##*/}"
-        echo "Extracting changelog for $TAG_NAME"
-        notes=$(awk "/^## ${TAG_NAME}$/,/^## /" CHANGELOG.md | sed '1d;$d')
+        mv .github ../.github_backup
+        packwiz modrinth export --output MMICU-AnvilCraft-Modrinth.mrpack
+        packwiz curseforge export --output MMICU-AnvilCraft-CurseForge.zip
+        mv ../.github_backup .github
+
+    - name: Generate release notes from commits
+      id: release_notes
+      run: |
+        git log -1 --pretty=format:"%s" > release_notes.txt
         echo "release_notes<<EOF" >> $GITHUB_OUTPUT
-        echo "$notes" >> $GITHUB_OUTPUT
+        cat release_notes.txt >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
 
     - name: Create GitHub Release
