@@ -1,0 +1,8 @@
+[vanilla]
+	ReplaceSlimeModel = false
+	ReplaceXPTexture = false
+	ReplaceTotemTexture = false
+	ReplaceXPBottleTexture = false
+
+[ai]
+	LLMEnabled = false

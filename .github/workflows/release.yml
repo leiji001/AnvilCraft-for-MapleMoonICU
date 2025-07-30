@@ -1,0 +1,42 @@
+name: Build and Rename Modpack on Release
+
+on:
+  release:
+    types: [published]  # 仅在发布 Release 时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 📦 Download Pakku Jar
+        run: |
+          curl -L -o pakku.jar https://github.com/juraj-hrivnak/Pakku/releases/download/v1.2.1/pakku.jar
+
+      - name: 🔨 Run Pakku export
+        run: |
+          java -jar pakku.jar export
+
+      - name: 📛 Rename build outputs
+        run: |
+          mkdir renamed
+          cp build/modrinth/*.mrpack     renamed/MMICU-AC-Modrinth.mrpack
+          cp build/curseforge/*.zip      renamed/MMICU-AC-CurseForge.zip
+          cp build/serverpack/*.zip      renamed/MMICU-AC-ServerPack.zip
+
+      - name: 🚀 Upload renamed artifacts to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            renamed/MMICU-AC-*.*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
