@@ -1,0 +1,51 @@
+name: Export and Release Modpack
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.19'
+
+    - name: Install packwiz
+      run: go install github.com/packwiz/packwiz@latest
+
+    - name: Add Go bin to PATH
+      run: echo "${HOME}/go/bin" >> $GITHUB_PATH
+
+    - name: Export to Modrinth format (.mrpack)
+      run: packwiz modrinth export --output AnvilCraft-for-MapleMoonICU.mrpack
+
+    - name: Export to CurseForge format (.zip)
+      run: packwiz curseforge export --output AnvilCraft-for-MapleMoonICU.zip
+
+    - name: Get release notes from CHANGELOG.md
+      id: changelog
+      run: |
+        TAG_NAME="${GITHUB_REF##*/}"
+        echo "Extracting changelog for $TAG_NAME"
+        notes=$(awk "/^## ${TAG_NAME}$/,/^## /" CHANGELOG.md | sed '1d;$d')
+        echo "release_notes<<EOF" >> $GITHUB_OUTPUT
+        echo "$notes" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        body: ${{ steps.changelog.outputs.release_notes }}
+        files: |
+          AnvilCraft-for-MapleMoonICU.mrpack
+          AnvilCraft-for-MapleMoonICU.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
