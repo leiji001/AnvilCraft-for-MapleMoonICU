@@ -1,9 +1,8 @@
 name: Export and Release Modpack
 
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]
 
 jobs:
   build-and-release:
