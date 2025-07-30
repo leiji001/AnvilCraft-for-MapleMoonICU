@@ -29,14 +29,14 @@ jobs:
       - name: 📛 Rename build outputs
         run: |
           mkdir renamed
-          cp build/modrinth/*.mrpack     renamed/MMICU-AC-Modrinth.mrpack
-          cp build/curseforge/*.zip      renamed/MMICU-AC-CurseForge.zip
-          cp build/serverpack/*.zip      renamed/MMICU-AC-ServerPack.zip
+          cp build/modrinth/*.mrpack     renamed/MMICU-AnvilCraft-Modrinth.mrpack
+          cp build/curseforge/*.zip      renamed/MMICU-AnvilCraft-CurseForge.zip
+          cp build/serverpack/*.zip      renamed/MMICU-AnvilCraft-ServerPack.zip
 
       - name: 🚀 Upload renamed artifacts to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            renamed/MMICU-AC-*.*
+            renamed/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
