@@ -30,14 +30,6 @@ jobs:
         packwiz curseforge export --output MMICU-AnvilCraft-CurseForge.zip
         mv ../.github_backup .github
 
-    - name: Generate release notes from commits
-      id: release_notes
-      run: |
-        git log -1 --pretty=format:"%s" > release_notes.txt
-        echo "release_notes<<EOF" >> $GITHUB_OUTPUT
-        cat release_notes.txt >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
-
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
