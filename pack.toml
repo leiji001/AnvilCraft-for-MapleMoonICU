@@ -1,0 +1,12 @@
+name = "枫月ICU 铁砧工艺"
+version = "0.8"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "96594772a4b43bf0a7c2b5e1a3aef2d64d335345fd8d8ec2d313ff0b258a3fb1"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.194"

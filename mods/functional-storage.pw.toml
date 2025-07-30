@@ -1,0 +1,16 @@
+filename = 'functionalstorage-1.21.1-1.5.1.jar'
+name = 'Functional Storage'
+side = 'both'
+x-prismlauncher-loaders = [ 'neoforge' ]
+x-prismlauncher-mc-versions = [ '1.21', '1.21.1' ]
+x-prismlauncher-release-type = 'beta'
+
+[download]
+hash = 'eef00faf1bc80f7fb6014430a570630e070a7dfe64e77ead449858fd3bd988d6fc6d9e88def215dc1f18a692b05404c0adfd64ee5513172d50b4a9be6ba67aac'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/cO40ZIg3/versions/HAcE8MTS/functionalstorage-1.21.1-1.5.1.jar'
+
+[update.modrinth]
+mod-id = 'cO40ZIg3'
+version = 'HAcE8MTS'

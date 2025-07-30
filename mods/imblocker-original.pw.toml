@@ -1,0 +1,16 @@
+filename = 'IMBlocker-5.4.1.1-neoforge-1.20.6+.jar'
+name = 'IMBlocker'
+side = 'client'
+x-prismlauncher-loaders = [ 'neoforge' ]
+x-prismlauncher-mc-versions = [ '1.20.6', '1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5', '1.21.6', '1.21.7', '1.21.8' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '94fdb744ebc8ec490e51e84141f2cc0cefb2df189d59ebe66dc42bf895ddd6bc2f94fd68d60c6cccc96faeb62e6821e7c2f13195ab74ba55efc171db7cd29e88'
+hash-format = 'sha512'
+mode = 'url'
+url = 'https://cdn.modrinth.com/data/WMDesFsZ/versions/BZem119r/IMBlocker-5.4.1.1-neoforge-1.20.6%2B.jar'
+
+[update.modrinth]
+mod-id = 'WMDesFsZ'
+version = 'BZem119r'
