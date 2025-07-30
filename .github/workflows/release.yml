@@ -20,7 +20,7 @@ jobs:
 
       - name: 📦 Download Pakku Jar
         run: |
-          curl -L -o pakku.jar https://github.com/juraj-hrivnak/Pakku/releases/download/v1.2.1/pakku.jar
+          curl -L -o pakku.jar https://github.com/juraj-hrivnak/Pakku/releases/download/latest/pakku.jar
 
       - name: 🔨 Run Pakku export
         run: |
@@ -40,3 +40,16 @@ jobs:
             renamed/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔁 Push Server Files to `server-dist` Branch
+        run: |
+          unzip -q build/serverpack/*.zip -d server-content
+          cd server-content
+          git init
+          git checkout -b server-dist
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit -m "Update serverpack for ${{ steps.vars.outputs.tag }}"
+          git push --force origin server-dist
