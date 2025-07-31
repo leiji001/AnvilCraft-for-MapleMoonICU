@@ -56,15 +56,6 @@ jobs:
           echo "📦 解压 serverpack 到 server-content/"
           unzip -q build/serverpack/*.zip -d server-content
 
-          echo "📝 写入 .gitignore"
-          cat <<EOF > server-content/.gitignore
-*
-!mods/
-!mods/**
-!config/
-!config/**
-EOF
-
           echo "🔧 提交并推送 mods/config 到 server-dist"
           cd server-content
           git config user.name "GitHub Actions"
