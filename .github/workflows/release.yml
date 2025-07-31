@@ -40,16 +40,35 @@ jobs:
             renamed/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🔁 Push Server Files to `server-dist` Branch
+          
+      - name: 🔁 Update server-dist branch (via .gitignore)
         run: |
-          unzip -q build/serverpack/*.zip -d server-content
+          echo "📥 克隆 server-dist 分支"
+          git clone --single-branch --branch server-dist \
+            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} \
+            server-content
+
+          echo "🧹 清除旧文件（保留 .git）"
           cd server-content
-          git init
-          git checkout -b server-dist
+          find . -mindepth 1 -not -name ".git" -exec rm -rf {} +
+          cd ..
+
+          echo "📦 解压 serverpack 到 server-content/"
+          unzip -q build/serverpack/*.zip -d server-content
+
+          echo "📝 写入 .gitignore"
+          cat <<EOF > server-content/.gitignore
+*
+!mods/
+!mods/**
+!config/
+!config/**
+EOF
+
+          echo "🔧 提交并推送 mods/config 到 server-dist"
+          cd server-content
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
-          git commit -m "Update serverpack for ${{ steps.vars.outputs.tag }}"
-          git push --force origin server-dist
+          git commit -m "Update mods/config for ${{ github.ref_name }}" || echo "Nothing to commit"
+          git push origin server-dist
