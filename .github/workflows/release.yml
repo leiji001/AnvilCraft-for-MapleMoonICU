@@ -20,7 +20,7 @@ jobs:
 
       - name: 📦 Download Pakku Jar
         run: |
-          curl -L -o pakku.jar https://github.com/juraj-hrivnak/Pakku/releases/download/latest/pakku.jar
+          curl -L -o pakku.jar https://github.com/juraj-hrivnak/Pakku/releases/download/v1.2.1/pakku.jar
 
       - name: 🔨 Run Pakku export
         run: |
