@@ -192,67 +192,6 @@
             ]
         },
         {
-            "pakku_id": "NvTPXvXdb1l1vuiR",
-            "type": "MOD",
-            "side": "BOTH",
-            "slug": {
-                "curseforge": "anvilcraft",
-                "modrinth": "anvilcraft"
-            },
-            "name": {
-                "curseforge": "AnvilCraft: Gravity Technology",
-                "modrinth": "AnvilCraft"
-            },
-            "id": {
-                "curseforge": "986251",
-                "modrinth": "vuISAWPc"
-            },
-            "files": [
-                {
-                    "type": "curseforge",
-                    "file_name": "anvilcraft-neoforge-1.21.1-1.4.10.jar",
-                    "mc_versions": [
-                        "1.21.1"
-                    ],
-                    "loaders": [
-                        "neoforge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://edge.forgecdn.net/files/6760/193/anvilcraft-neoforge-1.21.1-1.4.10.jar",
-                    "id": "6760193",
-                    "parent_id": "986251",
-                    "hashes": {
-                        "sha1": "d72dcad6b748d0f1b6361d5346e4518e85f4229e",
-                        "md5": "a650f0d6a0a540926cdb987d2fe5e8d4"
-                    },
-                    "required_dependencies": [],
-                    "size": 7285526,
-                    "date_published": "2025-07-12T14:52:21.613Z"
-                },
-                {
-                    "type": "modrinth",
-                    "file_name": "anvilcraft-neoforge-1.21.1-1.4.10.jar",
-                    "mc_versions": [
-                        "1.21.1"
-                    ],
-                    "loaders": [
-                        "neoforge"
-                    ],
-                    "release_type": "release",
-                    "url": "https://cdn.modrinth.com/data/vuISAWPc/versions/bTLzHlqN/anvilcraft-neoforge-1.21.1-1.4.10.jar",
-                    "id": "bTLzHlqN",
-                    "parent_id": "vuISAWPc",
-                    "hashes": {
-                        "sha512": "932874a086aaa12295b76df94320bb65f3e8405920b541c8b886129fb946e260517a6ecad418b6d3a4554ff87bc09d499eea61bd0b7d4b88d200ce49ba172556",
-                        "sha1": "d72dcad6b748d0f1b6361d5346e4518e85f4229e"
-                    },
-                    "required_dependencies": [],
-                    "size": 7285526,
-                    "date_published": "2025-07-12T14:52:25.795193Z"
-                }
-            ]
-        },
-        {
             "pakku_id": "QZByGrpWfHeZwPsf",
             "type": "MOD",
             "side": "BOTH",
